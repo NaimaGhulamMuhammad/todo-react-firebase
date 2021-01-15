@@ -30,12 +30,17 @@ export class Todo extends Component {
             })
        }
        Handle = (event , i) =>{
+           if(event.target.value === null){
+            alert("Please Fill out the Field")
+           }
+           else{
         const key = this.state.todos[i].id
         this.state.todos[i].item = event.target.value
         this.setState({
             todos: this.state.todos
         })
         firebase.database().ref('todos').child(key).set(this.state.todos[i])
+           }
        }
        edit = (index) => {
            
